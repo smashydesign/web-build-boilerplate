@@ -1,0 +1,23 @@
+{
+  "name": "web-build-boilerplate",
+  "version": "1.0.0",
+  "description": "Web development based on npm scripts using yarn",
+  "main": "index.js",
+  "repository": "git@github.com:smashydesign/web-build-boilerplate.git",
+  "author": "Shabith Ishan <shabith.ishan@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.7.5",
+    "browser-sync": "^2.18.8",
+    "eslint": "^3.16.1",
+    "imagemin-cli": "^3.0.0",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.2",
+    "onchange": "^3.2.1",
+    "postcss-cli": "^3.0.0-beta",
+    "pug": "^2.0.0-beta11",
+    "svg-sprite-generator": "^0.0.7",
+    "svgo": "^0.7.2",
+    "uglify-js": "^2.7.5"
+  }
+}
