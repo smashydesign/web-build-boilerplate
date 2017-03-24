@@ -1,3 +1,3 @@
 # web-build-boilerplate
 
-##### still in development
+A collection of packages that build a website using yarn with npm scripts
