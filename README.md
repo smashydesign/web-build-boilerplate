@@ -2,5 +2,5 @@
 
 A collection of packages that build a website using yarn with npm scripts
 
-** project-status : 🚧 development **
+**project-status : 🚧 development**
 
