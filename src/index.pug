@@ -1,10 +1,14 @@
 doctype html
-html(lang="en")
+html(lang="en").no-js
   head
-    title= pageTitle
+    meta(charset="utf-8")
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    title pageTitle
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="apple-touch-icon" href="apple-touch-icon.png")
     link(rel="stylesheet" href="css/main.css")
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
+    script(src="js/vendor/modernizr-2.8.3.min.js")
   body
     h1 Pug - node template engine
     #container.col
@@ -15,3 +19,8 @@ html(lang="en")
       p.
         Pug is a terse and simple templating language with a
         strong focus on performance and powerful features.
+    script(src="https://code.jquery.com/jquery-1.12.0.min.js")
+    script.
+      window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')
+    script(src="js/app.js")
+    //Google Analytics: change UA-XXXXX-X to be your site's ID.
