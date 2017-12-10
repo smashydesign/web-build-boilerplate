@@ -21,14 +21,17 @@
     "build:html": "pug -P src/ --out dist/",
     "build:css": " yarn scss && yarn stylelint",
     "build:css:prod": " yarn scss && yarn autoprefixer && yarn stylelint",
-    "build:js": "yarn eslint",
-    "build:js:prod": "yarn eslint && yarn uglify",
+    "build:js": "yarn eslint && yarn copy:js",
+    "build:js:prod": "yarn eslint && yarn copy:js && yarn uglify",
     "build:images": "yarn imagemin && yarn icons",
     "build": "yarn build:html && yarn build:css && yarn build:js",
-    "build:prod": "yarn build:html && yarn build:css:prod && yarn build:js:prod && yarn build:images && yarn copy:assets && yarn copy:favicons",
+    "build:prod": "yarn build:html && yarn build:css:prod && yarn build:js:prod && yarn build:images && yarn copy:assets && yarn copy:favicons && yarn serve",
     "copy:assets": "ncp src/assets dist/assets",
     "copy:favicons": "ncp src/favicons dist/",
-    "uglify": "ncp src/js/vendor dist/js/vendor",
+    "copy:js": "ncp src/js dist/js",
+    "uglify": "yarn uglify:vendor && yarn uglify:src",
+    "uglify:vendor": "rimraf dist/js/vendor && ncp src/js/vendor dist/js/vendor",
+    "uglify:src": "rimraf dist/jssrc && uglifyjs-folder src/js/src/ --config-file \"uglify.json\" -x .js -eo dist/js/src/",
     "watch:js": "onchange \"src/js\" -- yarn build:js",
     "watch:css": "onchange \"src/scss\" -- yarn build:css",
     "watch:html": "onchange \"**/*.pug\" -- yarn build:html",
@@ -36,13 +39,12 @@
     "watch:assets": "onchange \"src/assets\" -- yarn copy:assets",
     "watch:favicon": "onchange \"src/favicons\" -- yarn copy:favicons",
     "watch": "npm-run-all -p serve watch:*",
-    "serve": "browser-sync start --server \"./dist\" --files \"dist/css/*.css, dist/js/*.js, dist/**/*.html\"",
+    "serve": "browser-sync start --server \"./dist\" --files \"dist/css/*.css, dist/js/**/*.js, dist/**/*.html\"",
     "postinstall": "yarn build",
     "rsync": "echo 'please provide rsync command with options'",
     "deploy": "build:prod && rsync"
   },
-  "config": {
-  },
+  "config": {},
   "devDependencies": {
     "autoprefixer": "^6.7.5",
     "browser-sync": "^2.18.8",
@@ -65,7 +67,8 @@
     "stylelint-config-standard": "^16.0.0",
     "svg-sprite-generator": "^0.0.7",
     "svgo": "^0.7.2",
-    "uglify-js": "^3.1.0"
+    "uglify-js": "^3.1.0",
+    "uglifyjs-folder": "^1.5.0"
   },
   "browserslist": [
     "Last 2 versions",
